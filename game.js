@@ -20,10 +20,11 @@ function nextSequence() {
     playSound(randomChoosenColour);
 }
 
-$(document).keypress(function() {
+$(".start").click(function() {
     if (!started) {
       $("#level-title").text("Level " + level);
       nextSequence();
+      animatePress("st");
       started = true;
     }
   });
@@ -50,7 +51,7 @@ function checkAnswer(currentLevel) {
         var goAudio = new Audio('./sounds/wrong.mp3');
         goAudio.play();
         $("body").addClass("game-over");
-        $('#level-title').text("Game Over, Press Any Key to Restart");
+        $('#level-title').text("Game Over, Press Start Key to Restart");
         setTimeout(function () {
             $('body').removeClass("game-over");
         }, 200);
