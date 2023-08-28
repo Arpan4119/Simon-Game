@@ -6,7 +6,7 @@ body {
 #level-title {
   font-family: 'Press Start 2P', cursive;
   font-size: 2rem;
-  margin:  5%;
+  margin: 5%;
   color: #FEF2BF;
 }
 
@@ -25,15 +25,20 @@ body {
   border-radius: 20%;
 }
 
-.start{
-  width: 150px;
-  border: 10px solid black;
-  border-radius: 20%;
+.beg {
+  display: grid;
+  justify-content: center;
   font-family: 'Press Start 2P', cursive;
   font-size: 1.5rem;
-  height: 100px;
-  margin:  5%;
+  margin: 5%;
   color: #FEF2BF;
+}
+
+.start {
+  width: 150px;
+  height: 100px;
+  border: 10px solid black;
+  border-radius: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,4 +70,18 @@ body {
 .pressed {
   box-shadow: 0 0 20px white;
   background-color: grey;
+}
+
+#scoreBox {
+  font-size: 39px;
+  font-weight: bold;
+  font-family: 'New Tegomin', serif;
+}
+
+#hiscoreBox {
+  top: 59px;
+  right: 140px;
+  font-size: 39px;
+  font-weight: bold;
+  font-family: 'New Tegomin', serif;
 }

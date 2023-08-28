@@ -4,6 +4,7 @@ var userClickedPattern = new Array();
 var level = 0;
 var started = false;
 
+
 //function that starts the game
 function nextSequence() {
     //choose colour
@@ -11,7 +12,23 @@ function nextSequence() {
     var randomNumber = Math.random() * 4;
     var randomChoosenColour = buttonColours[Math.floor(randomNumber)];
     gamePattern.push(randomChoosenColour);
+    scoreBox.innerHTML = "Score: " + level;
+    var hiscoreval = level;
+    let hiScore = localStorage.getItem("hiScore");
+    if (hiScore === null) {
+        hiscoreval = 0;
+        localStorage.setItem("hiScore", JSON.stringify(hiscoreval))
+    }
+    else {
+        hiscoreval = JSON.parse(hiScore);
+        hiscoreBox.innerHTML = "high Score: " + hiScore;
+    }
 
+    if (level > hiscoreval) {
+        hiscoreval = level;
+        localStorage.setItem("hiScore", JSON.stringify(hiscoreval));
+        hiscoreBox.innerHTML = "hiScore: " + hiscoreval;
+    }
     level++;
     $("#level-title").text("level " + level);
     
@@ -20,14 +37,15 @@ function nextSequence() {
     playSound(randomChoosenColour);
 }
 
-$(".start").click(function() {
+$(".start").click(function () {
     if (!started) {
-      $("#level-title").text("Level " + level);
-      nextSequence();
-      animatePress("st");
-      started = true;
+        $("#level-title").text("Level " + level);
+        nextSequence();
+        animatePress("st");
+        started = true;
+
     }
-  });
+});
 
 //click
 $(".btn").click(function () {
@@ -36,16 +54,16 @@ $(".btn").click(function () {
     animatePress(userChoosenColour);
     playSound(userChoosenColour);
 
-    checkAnswer(userClickedPattern.length-1);
+    checkAnswer(userClickedPattern.length - 1);
 });
 
 function checkAnswer(currentLevel) {
     if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
-        if (userClickedPattern.length === gamePattern.length){
+        if (userClickedPattern.length === gamePattern.length) {
             setTimeout(function () {
-              nextSequence();
+                nextSequence();
             }, 1000);
-          }
+        }
     }
     else {
         var goAudio = new Audio('./sounds/wrong.mp3');
@@ -58,7 +76,6 @@ function checkAnswer(currentLevel) {
         startOver();
     }
 }
-
 
 //animate buttons
 function animatePress(currentColour) {
@@ -77,8 +94,7 @@ function playSound(name) {
     audio.play();
 }
 
-
-function startOver(){
+function startOver() {
     level = 0;
     gamePattern = [];
     started = false;
