@@ -27,7 +27,7 @@ function nextSequence() {
     if (level > hiscoreval) {
         hiscoreval = level;
         localStorage.setItem("hiScore", JSON.stringify(hiscoreval));
-        hiscoreBox.innerHTML = "hiScore: " + hiscoreval;
+        hiscoreBox.innerHTML = "high Score: " + hiscoreval;
     }
     level++;
     $("#level-title").text("level " + level);
